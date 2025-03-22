@@ -8,7 +8,7 @@ export default function Header({ opacity }: { opacity: number }) {
   return (
     <div
       className={`fixed bg-background w-full p-2 px-4 flex justify-between items-center font-Poppins uppercase text-foreground shadow-lg duration-500 ${
-        opacity === 0 ? "opacity-0 pointer-events-none" : `opacity-${opacity}`
+        opacity === 0 ? "opacity-0 pointer-events-none" : `opacity-${opacity} pointer-events-auto`
       }`}
     >
       <div>
