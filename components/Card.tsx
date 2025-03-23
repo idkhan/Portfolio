@@ -1,80 +1,75 @@
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface CardProps {
   title: string;
-  description: string;
-  images: string[]; // Array of image URLs
+  image?: string; // Make optional to handle missing images
   href: string;
 }
 
-const Card: React.FC<CardProps> = ({ title, description, images, href }) => {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block bg-alt-back text-foreground p-4 rounded-2xl shadow-lg w-64 hover:scale-102 transition-transform duration-300 z-20"
-    >
-      {/* Image Section */}
-      <div className="relative w-full h-40 overflow-hidden rounded-lg">
-        {images.length === 1 ? (
-          <Image
-            src={images[0]}
-            alt={title}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-lg"
-          />
-        ) : (
-          <div className="grid grid-cols-2 gap-1">
-            {images.slice(0, 4).map((img, index) => (
-              <div key={index} className="relative w-full h-20">
-                <Image
-                  src={img}
-                  alt={`Image ${index + 1}`}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-lg"
-                />
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+const Card: React.FC<CardProps> = ({ title, image, href }) => {
+  const router = useRouter();
 
-      {/* Text Section */}
-      <h3 className="text-xl font-bold mt-3">{title}</h3>
-      <p className="text-sm text-alt-fore line-clamp-3">{description}</p>
-    </a>
+  // Skip rendering if no image
+  if (!image) return null;
+
+  return (
+    <div 
+      className="relative w-full aspect-square overflow-hidden shadow-lg group cursor-pointer bg-accent"
+      onClick={() => router.push(href)}
+      role="button"
+      aria-label={`Go to ${title}`}
+    >
+      {/* Image Wrapper */}
+      <div className="relative w-full h-full">
+        <Image 
+          src={image} 
+          alt={title} 
+          fill
+          className="object-contain transition-transform duration-300 group-hover:scale-105 p-6 dark:invert-0 "
+        />
+      </div>
+      
+      {/* Title Overlay */}
+      <div className="absolute bottom-0 w-full bg-black/60 text-white p-4 text-lg font-bold translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+        {title}
+      </div>
+    </div>
   );
 };
 
 const CardList: React.FC = () => {
   const cards = [
     {
-      title: "Project Alpha",
-      description: "This is a short description of the project.",
-      images: [], 
-      href: "https://example.com/project-alpha",
+      title: "Submarine",
+      image: "/iconset/Submarine.png", 
+      href: "https://example.com/project-alpha"
     },
     {
-      title: "Futuristic Recorder",
-      description:
-        "A retrofuturistic recorder designed to be tactile and light",
-      images: [
-        "/projects/recorder_1.png",
-        "/projects/recorder_2.png",
-        "/projects/recorder_3.png"
-      ],
-      href: "https://example.com/design-concepts",
+      title: "Recorder",
+      image: "/iconset/Recorder.png",
+      href: "https://example.com/design-concepts"
     },
   ];
 
+  const splitIntoColumns = (cards: CardProps[], numColumns: number) => {
+    return Array.from({ length: numColumns }, (_, i) =>
+      cards.filter((_, index) => index % numColumns === i)
+    );
+  };
+
+  const colNumber = 3;
+  const columns = splitIntoColumns(cards,colNumber);
+
   return (
-    <div className="flex gap-4 flex-wrap p-4">
-      {cards.map((card, index) => (
-        <Card key={index} {...card} />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {columns.map((column,columnIndex) => (
+        <div className="grid gap-4" key={columnIndex}>
+          {column.map((card, index) => (
+            <Card key={index} {...card} />
+          ))}
+        </div>
       ))}
     </div>
   );

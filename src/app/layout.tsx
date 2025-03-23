@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased pointer-events-none scroll-smooth`}
+        className={`antialiased pointer-events-none`}
       >
         {children}
       </body>

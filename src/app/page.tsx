@@ -3,6 +3,8 @@ import { useRef, useEffect, useState } from "react";
 import Header from "../../components/Header";
 import { CaretDoubleDown } from "@phosphor-icons/react";
 import CardList from "../../components/Card";
+import MasonryGrid from "../../components/MasonryGrid";
+import Link from "next/link";
 
 export default function Home() {
   const myRef = useRef(null);
@@ -17,6 +19,28 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
   
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const images = [
+    "/projects/samsung_3.png",
+
+    "/projects/recorder_2.png",
+    "/projects/porsche.png",
+    "/projects/recorder_1.png",
+
+    "/projects/space.png",
+    "/projects/perfume_1.png",
+    "/projects/garden.png",
+    "/projects/samsung_2.png",
+    "/projects/perfume_2.png",
+    "/projects/recorder_4.png",
+    "/projects/samsung_1.png",
+    
+
+  ];
+
   return (
     <div className="scroll-smooth overflow-y-scroll snap-proximity snap-y h-screen font-Poppins transition-all duration-500 pointer-events-none">
       <Header opacity={Number(!titleIsVisible) * 100}></Header>
@@ -32,19 +56,21 @@ export default function Home() {
             </div>
           </div>
         </main>
-        <a href="#section-2">
+        <Link href={""} onClick={() => scrollToSection("section-2")}>
           <CaretDoubleDown className="animate-pull" size={32} />
-        </a>
+        </Link>
       </section>
 
       {/* Content Sections */}
-      <section id="section-2" className="h-screen grid grid-cols-3 gap-6 items-center justify-center bg-accent snap-start text-accent-text relative -z-10 p-6 pointer-events-auto">
-          <CardList></CardList>
-        <div className="wireframe-grid relative"></div>
+      <section id="section-2" className="bg-accent snap-start text-accent-text relative p-6 pt-12 pointer-events-auto">
+      <h1 className="mb-2 mt-2 font-black">SHOWCASE</h1>
+        <MasonryGrid images={images} col={4}/>
       </section>
 
-      <section className="h-screen flex items-center justify-center bg-gray-900 snap-start text-white pointer-events-auto">
-        <p className="text-2xl">Another Section</p>
+      <section id="projects" className="h-screen bg-background snap-start relative -z-10 p-6 pt-12 pointer-events-auto">
+        <h1 className="mb-2 mt-2 font-black">PROJECTS</h1>
+        <CardList></CardList>
+        <div className="wireframe-grid relative invert dark:invert-0"></div>
       </section>
     </div>
   );
