@@ -15,7 +15,7 @@ export default function Header({ opacity }: { opacity: number }) {
 
   return (
     <div
-      className={`fixed bg-background w-full p-2 px-4 flex justify-between items-center font-Poppins uppercase text-foreground duration-500 z-50 ${
+      className={`fixed bg-background w-full p-2 px-4 flex text-xs md:text-base justify-between items-center font-Poppins uppercase text-foreground duration-500 z-50 ${
         opacity === 0 ? "opacity-0 pointer-events-none" : `opacity-${opacity} pointer-events-auto`
       }`}
     >
@@ -33,10 +33,10 @@ export default function Header({ opacity }: { opacity: number }) {
       </div>
 
       {/* Navigation */}
-      <ul className="flex gap-4">
+      <ul className="flex md:gap-4">
         {menuItems.map((item, index) => (
           <li key={index}>
-            <Link href={item.href} className="relative inline-block overflow-hidden group cursor-pointer px-2">
+            <Link href={item.href} className="relative inline-block overflow-hidden group cursor-pointer px-2 text-center">
               <p className="relative z-10 top-1 transition-transform duration-500 group-hover:-translate-y-full text-foreground">
                 {item.name}
               </p>

@@ -5,8 +5,8 @@ export default function AboutPage() {
         <div className="snap-proximity snap-y h-screen font-Poppins transition-all duration-200 pointer-events-none">
             <div className="wireframe-grid relative invert dark:invert-0"></div>
             <Header opacity={100}/>
-            <section className="h-screen grid md:grid-cols-3 items-center justify-center relative p-8 pb-20 gap-16 sm:p-20 snap-start pointer-events-auto">
-                <div className="text-lg lg:text-xl col-span-2">
+            <section className="h-screen grid grid-cols-1 md:grid-cols-3 items-center justify-center relative p-6 md:p-8 pb-20 gap-16 snap-start pointer-events-auto">
+                <div className="text-xs md:text-lg lg:text-xl col-span-1 md:col-span-2">
                     <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium mb-2 duration-200">Hey there!</h1>
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium mb-2 duration-200">I&apos;m <span className="font-bold highlight">Ibrahim Khan</span>,</h2>
                     <p className="mb-4">

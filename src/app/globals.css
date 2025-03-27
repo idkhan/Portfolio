@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800;900&display=swap');
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Impact";
+  src: url("/fonts/impact.woff") format("woff");
+}
+
 :root {
   --background: white;
   --foreground: #171717;
@@ -22,6 +27,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-Poppins: Poppins, sans-serif;
+  --font-Impact: Impact, sans-serif;
   --color-accent: var(--accent);
   --color-accent-text: var(--accent-text);
   --color-alt-back: var(--alt-back);

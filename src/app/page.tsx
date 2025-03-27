@@ -50,7 +50,7 @@ export default function Home() {
         <main
           className={`transition-all duration-500 relative`}
         >
-          <div className={`transition-all duration-500 font-[Impact] text-6xl lg:text-9xl tracking-wider uppercase`}>
+          <div className={`transition-all duration-500 font-Impact text-6xl lg:text-9xl tracking-wider uppercase`}>
             <h1>IBRAHIM KHAN</h1>
             <div ref={myRef} className={` font-Poppins text-lg lg:text-xl lg:pl-1 font-bold uppercase tracking-normal`}>
               <h1 ref={myRef}>Animation, Design, CAD</h1>
