@@ -43,7 +43,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="scroll-smooth overflow-y-scroll snap-proximity snap-y h-screen font-Poppins transition-all duration-500 pointer-events-none">
+    <div className="scroll-smooth overflow-y-scroll md:snap-proximity md:snap-y h-screen font-Poppins transition-all duration-500 pointer-events-none">
       <Header opacity={Number(!titleIsVisible) * 100}></Header>
       {/* Hero Section */}
       <section className="h-screen flex flex-col items-center justify-center relative p-8 pb-20 gap-16 sm:p-20 snap-start pointer-events-auto">
@@ -63,9 +63,10 @@ export default function Home() {
       </section>
 
       {/* Content Sections */}
-      <section id="section-2" className="bg-accent snap-start text-accent-text relative p-6 pt-16 md:pt-12 pointer-events-auto">
+      <section id="section-2" className="bg-accent snap-start text-accent-text relative px-6 pt-16 pb-2 md:pt-12 pointer-events-auto">
       <h1 className="mb-2 mt-2 font-black">SHOWCASE</h1>
-        <MasonryGrid images={images} col={4}/>
+        <MasonryGrid images={images} col={4} className="mb-2"/>
+        <p className="font-bold italic text-xs">All works showcased here are entirely created by me, without the use of generative AI</p>
       </section>
 
       <section id="projects" className="h-screen bg-background snap-start relative -z-10 p-6 pt-12 pointer-events-auto">

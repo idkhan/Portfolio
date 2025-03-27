@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function AboutPage() {
     return (
-        <div className="scroll-smooth overflow-y-scroll snap-proximity snap-y h-screen font-Poppins transition-all duration-200 pointer-events-none">
+        <div className="scroll-smooth font-Poppins transition-all duration-200 pointer-events-none">
             <Header opacity={100}/>
             <div className="wireframe-grid relative invert dark:invert-0"></div>
             <section className="h-screen grid grid-cols-1 md:grid-cols-3 items-center justify-center relative p-6 md:p-8 pb-20 gap-2 md:gap-16 snap-start pointer-events-auto overflow-x-clip">
@@ -32,7 +32,7 @@ I believe that great design is a mix of creativity and precision, and I love col
                         alt="Ibrahim Khan"
                         width={500} // Adjust as needed
                         height={500}
-                        className="object-cover rounded-full aspect-square w-md md:w-4xl border-2 border-accent"
+                        className="object-cover rounded-full aspect-square w-sm md:w-4xl border-2 border-accent"
                     />
                 </div>
             </section>
