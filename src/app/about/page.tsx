@@ -1,12 +1,13 @@
 import Header from "../../../components/Header";
+import Image from "next/image";
 
 export default function AboutPage() {
     return (
-        <div className="snap-proximity snap-y h-screen font-Poppins transition-all duration-200 pointer-events-none">
-            <div className="wireframe-grid relative invert dark:invert-0"></div>
+        <div className="scroll-smooth overflow-y-scroll snap-proximity snap-y h-screen font-Poppins transition-all duration-200 pointer-events-none">
             <Header opacity={100}/>
-            <section className="h-screen grid grid-cols-1 md:grid-cols-3 items-center justify-center relative p-6 md:p-8 pb-20 gap-16 snap-start pointer-events-auto">
-                <div className="text-xs md:text-lg lg:text-xl col-span-1 md:col-span-2">
+            <div className="wireframe-grid relative invert dark:invert-0"></div>
+            <section className="h-screen grid grid-cols-1 md:grid-cols-3 items-center justify-center relative p-6 md:p-8 pb-20 gap-2 md:gap-16 snap-start pointer-events-auto overflow-x-clip">
+                <div className="text-xs md:text-lg lg:text-xl col-span-1 md:col-span-2 order-2 md:order-1">
                     <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium mb-2 duration-200">Hey there!</h1>
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium mb-2 duration-200">I&apos;m <span className="font-bold highlight">Ibrahim Khan</span>,</h2>
                     <p className="mb-4">
@@ -23,6 +24,16 @@ Whether you need a sleek product showcase, a compelling animation, or detailed C
 I believe that great design is a mix of creativity and precision, and I love collaborating with clients to bring their visions to reality.
 <br/><span className="highlight"> Let’s create something awesome together!</span>
         </p>
+                </div>
+                {/* Image Section */}
+                <div className="flex justify-center self-center order-1 md:order-2">
+                    <Image
+                        src="/about/me.jpg" // Replace with your actual image path
+                        alt="Ibrahim Khan"
+                        width={500} // Adjust as needed
+                        height={500}
+                        className="object-cover rounded-full aspect-square w-md md:w-4xl border-2 border-accent"
+                    />
                 </div>
             </section>
         </div>
