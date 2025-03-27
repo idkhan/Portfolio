@@ -29,6 +29,7 @@
   --font-Poppins: Poppins, sans-serif;
   --font-Impact: Impact, sans-serif;
   --color-accent: var(--accent);
+  --color-accent-pop: var(--accent-pop);
   --color-accent-text: var(--accent-text);
   --color-alt-back: var(--alt-back);
   --color-alt-fore: var(--alt-fore);

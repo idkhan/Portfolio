@@ -16,7 +16,7 @@ const Card: React.FC<CardProps> = ({ title, image, href }) => {
 
   return (
     <div 
-      className="relative w-full aspect-square overflow-hidden shadow-lg group cursor-pointer bg-accent"
+      className="relative w-full aspect-square overflow-hidden shadow-lg group cursor-pointer bg-accent duration-300 hover:bg-accent-pop"
       onClick={() => router.push(href)}
       role="button"
       aria-label={`Go to ${title}`}
@@ -32,7 +32,7 @@ const Card: React.FC<CardProps> = ({ title, image, href }) => {
       </div>
       
       {/* Title Overlay */}
-      <div className="absolute bottom-0 w-full bg-black/60 text-white p-4 text-lg font-bold translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+      <div className="absolute bottom-0 w-full bg-background text-accent p-4 text-lg font-bold translate-y-full group-hover:translate-y-0 transition-transform duration-300">
         {title}
       </div>
     </div>

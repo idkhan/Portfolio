@@ -63,7 +63,7 @@ export default function Home() {
       </section>
 
       {/* Content Sections */}
-      <section id="section-2" className="bg-accent snap-start text-accent-text relative p-6 pt-12 pointer-events-auto">
+      <section id="section-2" className="bg-accent snap-start text-accent-text relative p-6 pt-16 md:pt-12 pointer-events-auto">
       <h1 className="mb-2 mt-2 font-black">SHOWCASE</h1>
         <MasonryGrid images={images} col={4}/>
       </section>
