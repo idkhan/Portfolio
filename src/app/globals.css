@@ -5,9 +5,15 @@
   --background: white;
   --foreground: #171717;
   --accent: #9ae600;
+  --accent-pop: #b2ff19;
   --accent-text: #0a0a0a;
   --alt-back: #ededed;
   --alt-fore: #222222;
+}
+
+::selection{
+  background-color: var(--accent);
+  color: var(--accent-text);
 }
 
 @theme inline {
@@ -100,6 +106,21 @@ body {
   }
 }
 
+.highlight {
+  background-color: var(--accent);
+  color: var(--accent-text);
+  padding-left: var(--spacing);
+  padding-right: var(--spacing);
+  font-weight: 600;
+  transition-duration: 200ms;
+  white-space: nowrap;
+}
 
+.highlight::selection{
+  background-color: var(--foreground);
+  color:var(--background);
+}
 
-
+.highlight:hover{
+  background-color: var(--accent-pop);
+}

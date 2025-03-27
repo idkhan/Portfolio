@@ -2,22 +2,15 @@ import React from "react";
 import Image from "next/image";
 
 interface MasonryGridProps {
-  images: string[];
+  images: string[][];
   col: number;
 }
 
 const MasonryGrid: React.FC<MasonryGridProps> = ({ images, col }) => {
-    
-    const splitIntoColumns = (images: string[], numColumns: number) => {
-        return Array.from({ length: numColumns }, (_, i) =>
-          images.filter((_, index) => index % numColumns === i)
-        );
-      };
-    
-      const columns = splitIntoColumns(images,col);
   return (
+    <div className="flex justify-center">
     <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${col} gap-4`}>
-      {columns.map((column,columnIndex) => (
+      {images.map((column,columnIndex) => (
         <div key={columnIndex} className="grid gap-4">
             {column.map((image,imageIndex) => (
                 <div key={imageIndex}>
@@ -26,12 +19,13 @@ const MasonryGrid: React.FC<MasonryGridProps> = ({ images, col }) => {
                     alt={"Showcase"}
                     width={500}
                     height={500}
-                    className="h-auto max-w-full rounded-lg"
+                    className="h-auto max-w-full rounded-lg hover:scale-105 duration-500"
                     />
                 </div>
             ))}
         </div>
       ))}
+    </div>
     </div>
   );
 };

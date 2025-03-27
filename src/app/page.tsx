@@ -24,21 +24,22 @@ export default function Home() {
   };
 
   const images = [
-    "/projects/samsung_3.png",
-
-    "/projects/recorder_2.png",
-    "/projects/porsche.png",
-    "/projects/recorder_1.png",
-
-    "/projects/space.png",
-    "/projects/perfume_1.png",
-    "/projects/garden.png",
-    "/projects/samsung_2.png",
-    "/projects/perfume_2.png",
-    "/projects/recorder_4.png",
-    "/projects/samsung_1.png",
-    
-
+    [
+      "/projects/samsung_3.png",
+      "/projects/recorder_2.png",
+    ],
+    [
+      "/projects/recorder_1.png",
+      "/projects/perfume_1.png"
+    ],
+    [
+      "/projects/perfume_2.png",
+      "/projects/glass_2.png"
+    ],
+    [
+      "/projects/space.png",
+      "/projects/glass_1.png"
+    ]
   ];
 
   return (
