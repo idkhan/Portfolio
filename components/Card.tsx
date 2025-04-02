@@ -16,7 +16,7 @@ const Card: React.FC<CardProps> = ({ title, image, href }) => {
 
   return (
     <div 
-  className="relative w-full aspect-square overflow-hidden shadow-lg group cursor-pointer bg-accent duration-300 hover:bg-accent-pop focus-within:bg-accent-pop"
+  className="relative w-full aspect-square overflow-hidden shadow-lg group cursor-pointer bg-accent duration-300 hover:bg-accent-pop focus-within:bg-accent-pop rounded-lg"
   onClick={() => router.push(href)}
   role="button"
   aria-label={`Go to ${title}`}
@@ -46,12 +46,12 @@ const CardList: React.FC = () => {
     {
       title: "Submarine",
       image: "/iconset/Submarine.png", 
-      href: "https://example.com/project-alpha"
+      href: "/projects/submarine"
     },
     {
       title: "Recorder",
       image: "/iconset/Recorder.png",
-      href: "https://example.com/design-concepts"
+      href: "projects/recorder"
     },
   ];
 

@@ -6,6 +6,11 @@
   src: url("/fonts/impact.woff") format("woff");
 }
 
+@font-face {
+  font-family: "Woodblock";
+  src: url("/fonts/woodblock.woff") format("woff");
+}
+
 :root {
   --background: white;
   --foreground: #171717;
@@ -28,6 +33,7 @@
   --font-mono: var(--font-geist-mono);
   --font-Poppins: Poppins, sans-serif;
   --font-Impact: Impact, sans-serif;
+  --font-Woodblock: Woodblock, sans-serif;
   --color-accent: var(--accent);
   --color-accent-pop: var(--accent-pop);
   --color-accent-text: var(--accent-text);
@@ -130,4 +136,32 @@ body {
 
 .highlight:hover{
   background-color: var(--accent-pop);
+}
+
+.typewriter{
+  display: flex;
+  justify-content: center;
+}
+.typewriter h1{
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 1px solid;
+  animation: typing 1s steps(9) forwards,
+    blink 1s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink{
+  50% {
+    border-color: transparent;
+  }
 }
