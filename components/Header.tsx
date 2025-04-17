@@ -9,7 +9,7 @@ export default function Header({ opacity }: { opacity: number }) {
   const menuItems = [
     pathname !== "/" ? { name: "Home", href: "/" } : null, // Replace current page with Home
     pathname !== "/about" ? { name: "About", href: "/about" } : null,
-    pathname !== "/#projects" ? { name: "Projects", href: "/#projects" } : null,
+    pathname !== "/projects/" ? { name: "Projects", href: "/#projects" } : null,
     pathname !== "/contact" ? { name: "Contact", href: "/contact" } : null,
   ].filter(Boolean) as { name: string; href: string }[]; // Remove null values
 
