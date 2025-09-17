@@ -1,15 +1,19 @@
-import React from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 interface CardProps {
   title: string;
-  image?: string; // Make optional to handle missing images
+  image?: string;
   href: string;
 }
 
-const Card: React.FC<CardProps> = ({ title, image, href }) => {
+const Card = memo<CardProps>(({ title, image, href }) => {
   const router = useRouter();
+
+  const handleClick = useCallback(() => {
+    router.push(href);
+  }, [router, href]);
 
   // Skip rendering if no image
   if (!image) return null;
@@ -17,10 +21,10 @@ const Card: React.FC<CardProps> = ({ title, image, href }) => {
   return (
     <div 
   className="relative w-full aspect-square overflow-hidden shadow-lg group cursor-pointer bg-accent duration-300 hover:bg-accent-pop focus-within:bg-accent-pop rounded-lg"
-  onClick={() => router.push(href)}
+  onClick={handleClick}
   role="button"
   aria-label={`Go to ${title}`}
-  tabIndex={0} // Allows focus on mobile
+  tabIndex={0}
 >
   {/* Image Wrapper */}
   <div className="relative w-full h-full">
@@ -28,7 +32,9 @@ const Card: React.FC<CardProps> = ({ title, image, href }) => {
       src={image} 
       alt={title} 
       fill
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
       className="object-contain transition-transform duration-300 group-hover:scale-105 group-focus-within:scale-105 p-6 dark:invert-0"
+      priority={false}
     />
   </div>
   
@@ -39,10 +45,12 @@ const Card: React.FC<CardProps> = ({ title, image, href }) => {
 </div>
 
   );
-};
+});
 
-const CardList: React.FC = () => {
-  const cards = [
+Card.displayName = 'Card';
+
+const CardList = memo(() => {
+  const cards = useMemo(() => [
     {
       title: "Submarine",
       image: "/iconset/Submarine.png", 
@@ -51,30 +59,32 @@ const CardList: React.FC = () => {
     {
       title: "Recorder",
       image: "/iconset/Recorder.png",
-      href: "projects/recorder"
+      href: "/projects/recorder"
     },
-  ];
+  ], []);
 
-  const splitIntoColumns = (cards: CardProps[], numColumns: number) => {
+  const splitIntoColumns = useCallback((cards: CardProps[], numColumns: number) => {
     return Array.from({ length: numColumns }, (_, i) =>
       cards.filter((_, index) => index % numColumns === i)
     );
-  };
+  }, []);
 
   const colNumber = 3;
-  const columns = splitIntoColumns(cards,colNumber);
+  const columns = useMemo(() => splitIntoColumns(cards, colNumber), [cards, splitIntoColumns, colNumber]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      {columns.map((column,columnIndex) => (
+      {columns.map((column: CardProps[], columnIndex: number) => (
         <div className="grid gap-4" key={columnIndex}>
-          {column.map((card, index) => (
+          {column.map((card: CardProps, index: number) => (
             <Card key={index} {...card} />
           ))}
         </div>
       ))}
     </div>
   );
-};
+});
+
+CardList.displayName = 'CardList';
 
 export default CardList;

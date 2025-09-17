@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Image from "next/image";
 
 interface MasonryGridProps {
@@ -7,7 +7,7 @@ interface MasonryGridProps {
   className?: string
 }
 
-const MasonryGrid: React.FC<MasonryGridProps> = ({ images, col, className }) => {
+const MasonryGrid = memo<MasonryGridProps>(({ images, col, className }) => {
   return (
     <div className={`flex justify-center ${className}`}>
     <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${col} gap-4`}>
@@ -17,10 +17,12 @@ const MasonryGrid: React.FC<MasonryGridProps> = ({ images, col, className }) => 
                 <div key={imageIndex}>
                     <Image
                     src={image}
-                    alt={"Showcase"}
+                    alt="Showcase"
                     width={500}
                     height={500}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     className="h-auto max-w-full rounded-lg hover:scale-102 duration-500"
+                    loading="lazy"
                     />
                 </div>
             ))}
@@ -29,6 +31,8 @@ const MasonryGrid: React.FC<MasonryGridProps> = ({ images, col, className }) => 
     </div>
     </div>
   );
-};
+});
+
+MasonryGrid.displayName = 'MasonryGrid';
 
 export default MasonryGrid;

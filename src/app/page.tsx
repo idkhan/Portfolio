@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useMemo, useCallback } from "react";
 import Header from "../../components/Header";
 import { CaretDoubleDown } from "@phosphor-icons/react";
 import CardList from "../../components/Card";
@@ -7,23 +7,24 @@ import MasonryGrid from "../../components/MasonryGrid";
 import Link from "next/link";
 
 export default function Home() {
-  const myRef = useRef(null);
-  const [titleIsVisible, setTitleIsVisible] = useState(true)
+  const myRef = useRef<HTMLDivElement>(null);
+  const [titleIsVisible, setTitleIsVisible] = useState(true);
+  
   useEffect(() => {
     if(!myRef.current) return;
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
       setTitleIsVisible(entry.isIntersecting);
-    })
+    }, { threshold: 0.1 });
     observer.observe(myRef.current);
     return () => observer.disconnect();
   }, []);
   
-  const scrollToSection = (id: string) => {
+  const scrollToSection = useCallback((id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
+  }, []);
 
-  const images = [
+  const images = useMemo(() => [
     [
       "/projects/samsung_3.png",
       "/projects/recorder_2.png",
@@ -40,7 +41,7 @@ export default function Home() {
       "/projects/space.png",
       "/projects/glass_1.png"
     ]
-  ];
+  ], []);
 
   return (
     <div className="scroll-smooth overflow-y-scroll md:snap-proximity md:snap-y h-screen font-Poppins transition-all duration-500 pointer-events-none">
@@ -57,7 +58,7 @@ export default function Home() {
             </div>
           </div>
         </main>
-        <Link href={""} onClick={() => scrollToSection("section-2")}>
+        <Link href="" onClick={() => scrollToSection("section-2")}>
           <CaretDoubleDown className="animate-pull" size={32} />
         </Link>
       </section>
@@ -72,7 +73,7 @@ export default function Home() {
       <section id="projects" className="h-screen bg-background snap-start relative -z-10 p-6 pt-12 pointer-events-auto">
         <h1 className="mb-2 mt-2 font-black">PROJECTS</h1>
         <CardList></CardList>
-        <div className="wireframe-grid relative invert dark:invert-0"></div>
+        <div className="wireframe-grid relative invert dark:invert-0 overflow-hidden"></div>
       </section>
     </div>
   );

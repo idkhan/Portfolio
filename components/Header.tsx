@@ -2,16 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 
 export default function Header({ opacity }: { opacity: number }) {
   const pathname = usePathname();
 
-  const menuItems = [
-    pathname !== "/" ? { name: "Home", href: "/" } : null, // Replace current page with Home
+  const menuItems = useMemo(() => [
+    pathname !== "/" ? { name: "Home", href: "/" } : null,
     pathname !== "/about" ? { name: "About", href: "/about" } : null,
     pathname !== "/projects/" ? { name: "Projects", href: "/#projects" } : null,
     pathname !== "/contact" ? { name: "Contact", href: "/contact" } : null,
-  ].filter(Boolean) as { name: string; href: string }[]; // Remove null values
+  ].filter(Boolean) as { name: string; href: string }[], [pathname]);
 
   return (
     <div

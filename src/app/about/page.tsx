@@ -1,16 +1,18 @@
 'use client'
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import Header from "../../../components/Header";
 import Image from "next/image";
 
 export default function AboutPage() {
-
-    const fonts = ["font-Poppins highlight","font-Woodblock tracking-widest text-[#f9fa09] bg-[#229ef4] px-2 duration-200"];
+    const fonts = useMemo(() => [
+        "font-Poppins highlight",
+        "font-Woodblock tracking-widest text-[#f9fa09] bg-[#229ef4] px-2 duration-200"
+    ], []);
     const [fontIndex, setFontIndex] = useState(0);
 
-    const changeFont = () =>{
+    const changeFont = useCallback(() => {
         setFontIndex((prevIndex) => (prevIndex + 1) % fonts.length);
-    };
+    }, [fonts.length]);
 
     return (
         <div className="scroll-smooth font-Poppins transition-all duration-200 pointer-events-none">
@@ -42,7 +44,9 @@ I believe that great design is a mix of creativity and precision, and I love col
                         alt="Ibrahim Khan"
                         width={500}
                         height={500}
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover rounded-full aspect-square w-sm md:w-4xl outline-2 outline-accent"
+                        priority
                     />
                 </div>
             </section>
